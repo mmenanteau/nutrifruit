@@ -29,6 +29,9 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "nutrifruit"
+    "scheme": "nutrifruit",
+    "experiments": {
+      "tsconfigPaths": true
+    }
   }
 }
