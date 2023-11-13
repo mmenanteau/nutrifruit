@@ -1,3 +1,4 @@
+import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
@@ -12,14 +13,17 @@ export default function App() {
   };
 
   useEffect(() => {
-    fetchFruits().then(sortFruitsByName).then(setFruits);
+    fetchFruits()
+      .then(sortFruitsByName)
+      .then(setFruits);
   }, []);
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: "NutriFruit" }} />
       <Text>{fruits.length} fruits</Text>
       <FlatList data={fruits} renderItem={({ item }) => {
-        return <Text>{item.name}</Text>
+        return <Link href={`/fruit/${item.id}`}>{item.name}</Link>
       }} />
       <StatusBar style="auto" />
     </View>
