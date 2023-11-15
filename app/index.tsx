@@ -1,21 +1,17 @@
 import { Link, Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { AppDispatch } from '@/store';
 import { Fruit } from '@/types/Fruit';
-import { fetchFruits } from '@/api/fruits';
+import { fetchFruits, selectFruitsSortedByName } from '@/features/fruits/fruitsSlice';
 
 export default function App() {
-  const [fruits, setFruits] = useState<Fruit[]>([]);
-
-  const sortFruitsByName = (fruits: Fruit[]): Fruit[] => {
-    return fruits.sort((a, b) => a.name.localeCompare(b.name.toString()));
-  };
+  const dispatch = useDispatch<AppDispatch>();
+  const fruits: Fruit[] = useSelector(selectFruitsSortedByName);
 
   useEffect(() => {
-    fetchFruits()
-      .then(sortFruitsByName)
-      .then(setFruits);
+    dispatch(fetchFruits());
   }, []);
 
   return (
@@ -25,7 +21,6 @@ export default function App() {
       <FlatList data={fruits} renderItem={({ item }) => {
         return <Link href={`/fruit/${item.id}`}>{item.name}</Link>
       }} />
-      <StatusBar style="auto" />
     </View>
   );
 }
