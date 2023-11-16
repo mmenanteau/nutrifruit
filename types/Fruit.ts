@@ -1,10 +1,10 @@
 import { NutritionValue } from "@/types/NutritionValue"
 
 export type Fruit = {
-  id: Number,
-  name: String,
-  family: String,
-  order: String,
-  genus: String,
+  id: number,
+  name: string,
+  family: string,
+  order: string,
+  genus: string,
   nutritions: NutritionValue
 }

@@ -14,17 +14,17 @@ export default function FruitDetailsScreen() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: fruit?.name.toString() || id?.toString() }} />
+      <Stack.Screen options={{ title: fruit?.name || id?.toString() }} />
       {fruit ?
         <>
           <Text>Family: {fruit.family}</Text>
           <Text>Order: {fruit.order}</Text>
           <Text>Genus: {fruit.genus}</Text>
-          <Text>Calories: {fruit.nutritions.calories.toString()}</Text>
-          <Text>Fat: {fruit.nutritions.fat.toString()}</Text>
-          <Text>Sugar: {fruit.nutritions.sugar.toString()}</Text>
-          <Text>Carbohydrates: {fruit.nutritions.carbohydrates.toString()}</Text>
-          <Text>Protein: {fruit.nutritions.protein.toString()}</Text>
+          <Text>Calories: {fruit.nutritions.calories}</Text>
+          <Text>Fat: {fruit.nutritions.fat}</Text>
+          <Text>Sugar: {fruit.nutritions.sugar}</Text>
+          <Text>Carbohydrates: {fruit.nutritions.carbohydrates}</Text>
+          <Text>Protein: {fruit.nutritions.protein}</Text>
         </>
         : <Text>This fruit does not exist.</Text>}
     </View>
