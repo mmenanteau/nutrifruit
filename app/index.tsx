@@ -1,10 +1,17 @@
-import { Link, Stack } from 'expo-router';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
-import { AppDispatch } from '@/store';
-import { Fruit } from '@/types/Fruit';
-import { fetchFruits, fruitsSelector } from '@/features/fruits/fruitsSlice';
+import { Link, Stack } from "expo-router";
+import { useEffect } from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchFruits, fruitsSelector } from "@/features/fruits/fruitsSlice";
+import { AppDispatch } from "@/store";
+import { Fruit } from "@/types/Fruit";
 
 export default function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,12 +33,17 @@ export default function App() {
 
       {error && <Text>No fruit has been found. Please try again.</Text>}
 
-      {fruits.length > 0 && <>
-        <Text>{fruits.length} fruits</Text>
-        <FlatList data={sortFruitsByName(fruits)} renderItem={({ item }) => {
-          return <Link href={`/fruit/${item.id}`}>{item.name}</Link>
-        }} />
-      </>}
+      {fruits.length > 0 && (
+        <>
+          <Text>{fruits.length} fruits</Text>
+          <FlatList
+            data={sortFruitsByName(fruits)}
+            renderItem={({ item }) => {
+              return <Link href={`/fruit/${item.id}`}>{item.name}</Link>;
+            }}
+          />
+        </>
+      )}
     </View>
   );
 }
@@ -39,11 +51,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   loader: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

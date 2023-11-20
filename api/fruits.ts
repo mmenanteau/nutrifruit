@@ -7,11 +7,10 @@ export const fetchAllFruits = async (): Promise<Fruit[]> => {
     const response = await fetch(`${BASE_URL}/all`);
     return await response.json();
   } catch (error) {
-    console.error(error);
-    return Promise.reject();
+    return Promise.reject(error);
   }
 };
 
-const fruitsApi = { fetchAllFruits }
+const fruitsApi = { fetchAllFruits };
 
 export default fruitsApi;
