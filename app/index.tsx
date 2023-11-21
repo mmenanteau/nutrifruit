@@ -29,20 +29,23 @@ export default function App() {
     <View style={styles.container}>
       <Stack.Screen options={{ title: "NutriFruit" }} />
 
-      {isLoading && <ActivityIndicator size="large" style={styles.loader} />}
+      {isLoading && <ActivityIndicator size="large" />}
 
       {error && <Text>No fruit has been found. Please try again.</Text>}
 
       {fruits.length > 0 && (
-        <>
-          <Text>{fruits.length} fruits</Text>
-          <FlatList
-            data={sortFruitsByName(fruits)}
-            renderItem={({ item }) => {
-              return <Link href={`/fruit/${item.id}`}>{item.name}</Link>;
-            }}
-          />
-        </>
+        <FlatList
+          style={styles.list}
+          contentContainerStyle={styles.listScroll}
+          data={sortFruitsByName(fruits)}
+          renderItem={({ item }) => {
+            return (
+              <Link href={`/fruit/${item.id}`} style={styles.item}>
+                {item.name}
+              </Link>
+            );
+          }}
+        />
       )}
     </View>
   );
@@ -51,11 +54,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-  },
-  loader: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  list: {
+    alignSelf: "flex-start",
+    width: "100%",
+  },
+  listScroll: {
+    paddingHorizontal: 20,
+    paddingBottom: 40,
+    paddingTop: 15,
+  },
+  item: {
+    paddingVertical: 5,
   },
 });
